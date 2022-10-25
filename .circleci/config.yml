@@ -1,8 +1,15 @@
-version: 2
+version: 2.1
+
+orbs:
+  python: circleci/python@1.5.0
+
 jobs:
   build-and-test:
     docker:
       - image: lettingsoc-web
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWOR
     steps:
       - checkout
       - python/install-packages:
@@ -15,6 +22,6 @@ jobs:
           command: flake8
 
 workflows:
-  sample:
+  my-workflow:
     jobs:
       - build-and-test
