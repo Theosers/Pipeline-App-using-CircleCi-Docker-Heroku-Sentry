@@ -9,7 +9,7 @@ jobs:
       - image: lettingsoc-web
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWOR
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - python/install-packages:
@@ -25,4 +25,3 @@ workflows:
   my-workflow:
     jobs:
       - build-and-test
-      
