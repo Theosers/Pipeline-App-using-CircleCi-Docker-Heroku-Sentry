@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build-and-test:
+    docker:
+      - image: lettingsoc-web
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: pytest
+      - run:
+          name: Run linting
+          command: flake8
+
+workflows:
+  sample:
+    jobs:
+      - build-and-test
