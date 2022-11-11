@@ -21,6 +21,7 @@ jobs:
           name: Run linting
           command: flake8
 
+
 workflows:
   my-workflow:
     jobs:
