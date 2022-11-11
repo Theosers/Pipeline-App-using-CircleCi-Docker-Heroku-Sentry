@@ -3,5 +3,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 COPY . /app
 WORKDIR /app
-RUN pip install -r app/requirements.txt
+CD app
+RUN pip install -r requirements.txt
 EXPOSE 8000
