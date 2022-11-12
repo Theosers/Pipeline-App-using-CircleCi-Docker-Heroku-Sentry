@@ -4,11 +4,13 @@ services:
   db:
     image: postgres
     volumes:
-      - .:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=lettings
-      - POSTGRES_USER=theo
+      - POSTGRES_USER=theophile
       - POSTGRES_PASSWORD=123456
+    ports:
+      - "5432:5432"
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -16,9 +18,8 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=lettingsgo
-      - POSTGRES_USER=theo
-      - POSTGRES_PASSWORD=123456
+
     depends_on:
       - db
+volumes:
+  postgres_data:
