@@ -14,7 +14,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.2
-      - image: cimg/postgres:14.1
+      - image: theophilesers/p13:version1
         environment:
           POSTGRES_USER: theophile
 
@@ -25,9 +25,7 @@ jobs:
           name: Install Deps
       - run:
           name: Run migrations
-          command: |
-            . venv/bin/activate
-            python manage.py migrate --skip-checks
+          command: python manage.py migrate 
       - run:
           name: Run tests
           command: pytest
