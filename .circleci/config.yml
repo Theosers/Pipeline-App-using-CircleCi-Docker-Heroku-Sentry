@@ -27,6 +27,9 @@ jobs:
           name: Run migrations
           command: python manage.py makemigrations 
       - run:
+          name: Run MIGRATE
+          command: python manage.py migrate 
+      - run:
           name: Run tests
           command: pytest
 workflows:
