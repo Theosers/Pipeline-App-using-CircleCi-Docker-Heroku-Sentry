@@ -9,8 +9,7 @@ orbs:
 jobs:
   build-and-test:
     docker:
-      - image: theophilesers/p13:version12ouho
-
+      - image: theophilesers/p13:version1
 
     steps:
       - checkout
