@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lettings',
+        'NAME': 'postgres',
         'USER': 'theophile',
         'PASSWORD': '123456',
         'HOST': 'localhost',
