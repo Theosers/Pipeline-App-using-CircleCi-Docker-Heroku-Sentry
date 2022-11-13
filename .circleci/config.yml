@@ -15,9 +15,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-            - v1-dependencies-
-      
+            - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}      
       - python/install-packages:
           pkg-manager: pip
       - save_cache:
