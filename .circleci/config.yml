@@ -17,7 +17,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}      
       - run:
-          command: pip install -r src/requirements.txt
+          command: pip install -r LettingsOC/requirements.txt
           name: Install Deps
       - save_cache:
           paths:
