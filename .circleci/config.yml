@@ -19,14 +19,13 @@ jobs:
       - run:
           command: pip install -r LettingsOC/requirements.txt
           name: Install Deps
-      - run:
-          name: Run tests
-          command: pytest oc_lettings_site
       - save_cache:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-      
+      - run:
+          name: Run tests
+          command: pytest
 workflows:
   sample: 
     jobs:
