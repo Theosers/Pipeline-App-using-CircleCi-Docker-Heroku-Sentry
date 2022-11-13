@@ -27,9 +27,6 @@ jobs:
           name: Install Deps
   
       - run:
-          command: python LettingsOC/manage.py loaddata datadump.json
-          name: load data from Json
-      - run:
           command: python LettingsOC/manage.py runserver 0.0.0.0:8000
           name: runserver
 
