@@ -25,13 +25,7 @@ jobs:
       - run:
           command: pip install -r LettingsOC/requirements.txt
           name: Install Deps
-      - run:
-          command: python LettingsOC/manage.py makemigrations
-          name: database makemigrations
-      
-      - run:
-          command: python LettingsOC/manage.py migrate
-          name: database migration
+  
       - run:
           command: python LettingsOC/manage.py loaddata datadump.json
           name: load data from Json
