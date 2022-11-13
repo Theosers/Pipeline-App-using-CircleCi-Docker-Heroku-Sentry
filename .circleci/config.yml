@@ -40,6 +40,5 @@ workflows:
     jobs:
       - build-and-test
   heroku_deploy:
-    working_directory: ~/LettingsOC/
     jobs:
       - heroku/deploy-via-git
