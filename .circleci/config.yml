@@ -2,9 +2,7 @@
 version: 2.1
 
 orbs:
-
   python: circleci/python@1.5.0
-
 
 jobs:
   build-and-test:
@@ -23,9 +21,7 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-      - run:
-          name: Run tests
-          command: pytest LettingsOC
+
 workflows:
   sample: 
     jobs:
