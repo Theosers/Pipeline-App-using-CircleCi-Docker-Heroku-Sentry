@@ -24,11 +24,14 @@ jobs:
           command: pip install -r requirements.txt
           name: Install Deps
       - run:
-          name: Run migrations
+          name: Run makemigrations
           command: python manage.py makemigrations 
       - run:
           name: Run MIGRATE
           command: python manage.py migrate 
+      -run:
+          name: Run loaddata from Json
+          command: python manage.py loaddata datadump.json
       - run:
           name: Run tests
           command: pytest
