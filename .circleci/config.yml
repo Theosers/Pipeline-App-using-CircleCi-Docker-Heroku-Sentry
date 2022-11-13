@@ -1,17 +1,25 @@
+
 version: 2.1
 
-jobs:
-  say-hello:
+orbs:
 
+  python: circleci/python@1.5.0
+
+
+jobs:
+  build-and-test:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/python:3.10.2
 
     steps:
       - checkout
+      - python/install-packages:
+          pkg-manager: pip
+
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Run tests
+          command: pytest
 workflows:
-  say-hello-workflow:
+  sample: 
     jobs:
-      - say-hello
+      - build-and-test
