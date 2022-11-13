@@ -1,1 +1,1 @@
-web: gunicorn my_django_project.wsgi
+gunicorn oc_lettings_site.wsgi
