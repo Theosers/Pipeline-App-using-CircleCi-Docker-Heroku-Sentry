@@ -13,6 +13,15 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "YOURPATH/requirements.txt" }}
+            - v1-dependencies-
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "YOURPATH/requirements.txt" }}
       - python/install-packages:
           pkg-manager: pip
 
