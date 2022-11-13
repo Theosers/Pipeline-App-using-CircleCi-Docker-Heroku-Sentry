@@ -12,7 +12,7 @@ services:
     ports:
       - "3000:3000"
   web:
-    build: .
+    build: LettingsOC
     command: >
        sh -c 'python manage.py migrate &&
               python manage.py loaddata datadump.json &&
