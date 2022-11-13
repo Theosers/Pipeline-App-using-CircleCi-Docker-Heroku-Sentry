@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Run MIGRATE
           command: python manage.py migrate 
-      -run:
+      - run:
           name: Run loaddata from Json
           command: python manage.py loaddata datadump.json
       - run:
