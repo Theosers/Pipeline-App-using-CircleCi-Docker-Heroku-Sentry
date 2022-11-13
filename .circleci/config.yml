@@ -16,8 +16,9 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}      
-      - python/install-packages:
-          pkg-manager: pip
+      - run:
+          command: pip install -r src/requirements.txt
+          name: Install Deps
       - save_cache:
           paths:
             - ./venv
