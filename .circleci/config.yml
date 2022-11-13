@@ -26,7 +26,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: pytest LettingsOC
+          command: pytest
 workflows:
   sample: 
     jobs:
