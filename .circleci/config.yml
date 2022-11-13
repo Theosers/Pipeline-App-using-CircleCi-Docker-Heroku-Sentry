@@ -21,7 +21,7 @@ jobs:
           name: Install Deps
       - run:
           name: Run tests
-          command: pytest
+          command: pytest oc_lettings_site
       - save_cache:
           paths:
             - ./venv
