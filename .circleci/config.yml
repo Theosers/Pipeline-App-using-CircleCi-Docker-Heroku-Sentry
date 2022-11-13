@@ -25,7 +25,7 @@ jobs:
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
       - run:
           name: Run tests
-          command: pytest
+          command: pytest LettingsOC
 workflows:
   sample: 
     jobs:
