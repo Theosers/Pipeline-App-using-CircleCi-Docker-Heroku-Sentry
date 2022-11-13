@@ -12,6 +12,7 @@ orbs:
   
 jobs:
   build-and-test:
+    deploy:
     docker:
       - image: cimg/python:3.10.2
       - image: cimg/postgres:14.1
@@ -24,18 +25,21 @@ jobs:
           command: pip install -r requirements.txt
           name: Install Deps
       - run:
-          name: Run migrations
+          name: Run makemigrations
           command: python manage.py makemigrations 
       - run:
           name: Run MIGRATE
           command: python manage.py migrate 
       - run:
+          name: Run loaddata from Json
+          command: python manage.py loaddata datadump.json
+      - run:
           name: Run tests
           command: pytest
 workflows:
-  sample: 
-    jobs:
-      - build-and-test
   heroku_deploy:
     jobs:
-      - heroku/deploy-via-git
+      - build-and-test
+      - heroku/deploy-via-git:
+          requires:
+              - build-and-test
