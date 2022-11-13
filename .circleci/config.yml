@@ -42,9 +42,7 @@ workflows:
   heroku_deploy:
     jobs:
       - heroku/deploy-via-git:
-          post-steps:
-            - run: python manage.py loaddata datadump.json
           pre-steps:
-            - run: command-that-run-before-deploying
-
+            - run: python manage.py migrate 
+            - run: python manage.py loaddata datadump.json
 
