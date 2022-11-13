@@ -31,7 +31,7 @@ jobs:
           command: python manage.py migrate 
       - run:
           name: Run loaddata from Json
-          command: python manage.py loaddata datadump.
+          command: python manage.py loaddata datadump.json
       - run:
           name: Run tests
           command: pytest
