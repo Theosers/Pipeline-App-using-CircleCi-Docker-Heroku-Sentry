@@ -14,27 +14,13 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.2
-      - image: cimg/postgres:14.1
+      - image: theophilesers/p13:version1
         environment:
           POSTGRES_USER: theophile
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}      
-      - run:
-          command: pip install -r LettingsOC/requirements.txt
-          name: Install Deps
-  
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-
-      - run:
-          name: Run tests
-          command: pytest LettingsOC
+     
 workflows:
   sample: 
     jobs:
