@@ -1,29 +1,25 @@
+
 version: 2.1
 
 orbs:
+
   python: circleci/python@1.5.0
+
 
 jobs:
   build-and-test:
     docker:
-      - image: theophilesers/p13:version1
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
-    steps:
+      - image: cimg/python:3.10.2
 
+    steps:
+      - checkout
       - python/install-packages:
           pkg-manager: pip
-          app-dir: ~/
+
       - run:
           name: Run tests
           command: pytest
-      - run:
-          name: Run linting
-          command: flake8
-
-
 workflows:
-  my-workflow:
+  sample: 
     jobs:
       - build-and-test
