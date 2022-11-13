@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: install dependencies
-          command: pip install -r requirements.txt
+          command: pip install -r LettingsOC/requirements.txt
       - run:
           name: Run tests
           command: pytest
