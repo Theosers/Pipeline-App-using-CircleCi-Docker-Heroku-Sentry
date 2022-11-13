@@ -12,26 +12,23 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.14
+      - setup_remote_docker
      
-      - python/install-packages:
-          pkg-manager: pip
-          app-dir: ~/
-          
-      - restore_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: |
-            pip install --user -r requirements.txt
-
-      - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "requirements.txt" }}
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0 \
+              awscli==1.11.76
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
           paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            - /caches/app.tar
+
+
       - run:
           name: Run tests
           command: pytest
