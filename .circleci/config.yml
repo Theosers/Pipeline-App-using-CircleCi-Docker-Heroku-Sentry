@@ -41,5 +41,4 @@ workflows:
       - build-and-test
   heroku_deploy:
     jobs:
-      
       - heroku/deploy-via-git
