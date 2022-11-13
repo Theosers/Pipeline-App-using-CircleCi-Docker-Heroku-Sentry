@@ -3,11 +3,11 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.5.0
-
+  
 jobs:
   build-and-test:
     docker:
-      - image: theophilesers/p13:version1
+      - image: cimg/python:3.10.2
 
     steps:
       - checkout
@@ -21,7 +21,19 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
+    
+      - setup_remote_docker
+      - run:
+          name: Start container and verify it's working
+          command: |
+            set -x
+            docker-compose up -d
 
+
+
+      - run:
+          name: Run tests
+          command: pytest LettingsOC
 workflows:
   sample: 
     jobs:
