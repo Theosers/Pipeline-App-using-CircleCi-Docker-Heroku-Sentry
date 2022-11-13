@@ -20,17 +20,9 @@ jobs:
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}      
       - run:
-          command: pip install -r LettingsOC/requirements.txt
+          command: pip install -r requirements.txt
           name: Install Deps
-  
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
 
       - run:
           name: Run tests
