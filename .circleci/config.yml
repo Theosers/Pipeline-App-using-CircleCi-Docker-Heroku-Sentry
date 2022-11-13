@@ -8,6 +8,7 @@ docker-auth: &docker-auth
 
 orbs:
   python: circleci/python@1.5.0
+  heroku: circleci/heroku@0.0.10
   
 jobs:
   build-and-test:
@@ -26,17 +27,10 @@ jobs:
           command: pip install -r LettingsOC/requirements.txt
           name: Install Deps
   
-      - run:
-          command: python LettingsOC/manage.py runserver 0.0.0.0:8000
-          name: runserver
-
-
       - save_cache:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-
-
 
       - run:
           name: Run tests
@@ -45,3 +39,6 @@ workflows:
   sample: 
     jobs:
       - build-and-test
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
