@@ -17,13 +17,13 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
             - v1-dependencies-
+      
+      - python/install-packages:
+          pkg-manager: pip
       - save_cache:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "LettingsOC/requirements.txt" }}
-      - python/install-packages:
-          pkg-manager: pip
-
       - run:
           name: Run tests
           command: pytest
