@@ -37,9 +37,7 @@ jobs:
       - run:
           name: Run tests
           command: pytest
-      - run:
-          name: Archive Docker image
-          command: docker compose up
+
           
 workflows:
   heroku_deploy:
