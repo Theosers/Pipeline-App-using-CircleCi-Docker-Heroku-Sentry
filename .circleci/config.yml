@@ -9,7 +9,8 @@ docker-auth: &docker-auth
 orbs:
   python: circleci/python@1.5.0
   heroku: circleci/heroku@0.0.10
-  
+
+
 jobs:
   build-and-test:
     docker:
@@ -17,7 +18,6 @@ jobs:
       - image: cimg/postgres:14.1
         environment:
           POSTGRES_USER: theophile
-      - image: docker:stable
 
     steps:
       - checkout
@@ -38,8 +38,8 @@ jobs:
           name: Run tests
           command: pytest
       - run:
-          name: Build Docker image
-          command: docker build --tag helloworld .
+          name: Archive Docker image
+          command: docker save --output image.tar theophilesers/p13:al
           
 workflows:
   heroku_deploy:
