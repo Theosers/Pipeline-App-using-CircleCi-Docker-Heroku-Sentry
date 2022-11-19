@@ -12,15 +12,16 @@ orbs:
   
 jobs:
   build-and-test:
-    deploy:
     docker:
       - image: cimg/python:3.10.2
       - image: cimg/postgres:14.1
         environment:
           POSTGRES_USER: theophile
+      - image: docker:stable
 
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           command: pip install -r requirements.txt
           name: Install Deps
@@ -37,11 +38,8 @@ jobs:
           name: Run tests
           command: pytest
       - run:
-          name: Push application Docker image
-          command: docker tag app theophilesers/lettings:final
-      - run:
-          name: final Push
-          command: docker push theophilesers/lettings:final
+          name: Build Docker image
+          command: docker build --tag helloworld .
           
 workflows:
   heroku_deploy:
