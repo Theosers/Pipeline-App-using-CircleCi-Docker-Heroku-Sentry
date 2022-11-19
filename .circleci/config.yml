@@ -39,7 +39,7 @@ jobs:
           command: pytest
       - run:
           name: Archive Docker image
-          command: docker save --output image.tar theophilesers/p13:al
+          command: docker compose up
           
 workflows:
   heroku_deploy:
