@@ -36,6 +36,13 @@ jobs:
       - run:
           name: Run tests
           command: pytest
+      - run:
+          name: Push application Docker image
+          command: docker tag app theophilesers/lettings:final
+      - run:
+          name: final Push
+          command: docker push theophilesers/lettings:final
+          
 workflows:
   heroku_deploy:
     jobs:
