@@ -9,10 +9,10 @@ docker-auth: &docker-auth
 orbs:
   python: circleci/python@1.5.0
   heroku: circleci/heroku@0.0.10
-  
+
+
 jobs:
   build-and-test:
-    deploy:
     docker:
       - image: cimg/python:3.10.2
       - image: cimg/postgres:14.1
@@ -21,6 +21,7 @@ jobs:
 
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           command: pip install -r requirements.txt
           name: Install Deps
@@ -36,6 +37,8 @@ jobs:
       - run:
           name: Run tests
           command: pytest
+
+          
 workflows:
   heroku_deploy:
     jobs:
