@@ -53,6 +53,9 @@ jobs:
           name: tag the image
           command: docker tag project_web:latest theophilesers/p13:circleci
 
+      - run:
+          name: docker hub login
+          command: docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD" hub.docker.com
 
       - run:
           name: Push
