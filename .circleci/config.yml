@@ -36,6 +36,11 @@ jobs:
       - run:
           name: Run tests
           command: pytest
+  dock:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
       - run:
           name: Install Docker Compose
           environment:
@@ -65,6 +70,7 @@ jobs:
 workflows:
   heroku_deploy:
     jobs:
+      - dock
       - build-and-test
       - heroku/deploy-via-git:
           requires:
