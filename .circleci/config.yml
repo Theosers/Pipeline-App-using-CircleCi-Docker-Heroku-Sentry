@@ -21,7 +21,6 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           command: pip install -r requirements.txt
           name: Install Deps
@@ -37,7 +36,20 @@ jobs:
       - run:
           name: Run tests
           command: pytest
-
+      
+      - setup_remote_docker  
+      - run:
+        # installs a docker client that will be used to run the docker commands
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+      - run:
+          name: Build Docker image
+          command: docker build -t theosers/circleci-tutorial:v1 .
           
 workflows:
   heroku_deploy:
