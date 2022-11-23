@@ -21,7 +21,21 @@ jobs:
 
     steps:
       - checkout
-
+      - run:
+          command: pip install -r requirements.txt
+          name: Install Deps
+      - run:
+          name: Run makemigrations
+          command: python manage.py makemigrations 
+      - run:
+          name: Run MIGRATE
+          command: python manage.py migrate 
+      - run:
+          name: Run loaddata from Json
+          command: python manage.py loaddata datadump.json
+      - run:
+          name: Run tests
+          command: pytest
       - run:
           name: Install Docker Compose
           environment:
@@ -33,7 +47,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: docker-compose up
+          command: docker-compose build
           
       - run:
           name: tag the image
@@ -42,6 +56,7 @@ jobs:
       - run:
           name: docker hub login
           command: docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD" 
+
 
       - run:
           name: Push
