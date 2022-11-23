@@ -50,7 +50,7 @@ jobs:
           command: docker-compose build
       - run:
           name: Push
-          command: docker push theosers/p13:circleci
+          command: docker push theophilesers/p13:circleci
           
 workflows:
   heroku_deploy:
