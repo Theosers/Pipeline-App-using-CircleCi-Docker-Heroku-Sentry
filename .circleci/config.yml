@@ -21,7 +21,6 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           command: pip install -r requirements.txt
           name: Install Deps
@@ -37,7 +36,30 @@ jobs:
       - run:
           name: Run tests
           command: pytest
+      - run:
+          name: Install Docker Compose
+          environment:
+            COMPOSE_VERSION: '1.29.2'
+          command: |
+            curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - setup_remote_docker
+      - run:
+          name: Build images of services declared in docker-compose.yml
+          command: docker-compose up
+          
+      - run:
+          name: tag the image
+          command: docker tag project_web:latest theophilesers/p13:circleci
 
+      - run:
+          name: docker hub login
+          command: docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD" 
+
+      - run:
+          name: Push
+          command: docker push theophilesers/p13:circleci
           
 workflows:
   heroku_deploy:
