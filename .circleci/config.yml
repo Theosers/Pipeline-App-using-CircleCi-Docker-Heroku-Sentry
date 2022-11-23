@@ -55,7 +55,7 @@ jobs:
 
       - run:
           name: docker hub login
-          command: docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD" hub.docker.com
+          command: docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD" 
 
       - run:
           name: Push
