@@ -48,6 +48,12 @@ jobs:
       - run:
           name: Build images of services declared in docker-compose.yml
           command: docker-compose build
+          
+      - run:
+          name: tag the image
+          command: docker tag project_web:latest theophilesers/p13:circleci
+
+
       - run:
           name: Push
           command: docker push theophilesers/p13:circleci
