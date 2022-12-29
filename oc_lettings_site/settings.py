@@ -3,9 +3,9 @@ import django_heroku
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-
 sentry_sdk.init(
-    dsn="https://4e7faf33fdd04761ace195fb68616c10@o4504157694197760.ingest.sentry.io/4504186316521472",
+    dsn="https://4e7faf33fdd04761ace195fb68616c10@o4504157694197760\
+        .ingest.sentry.io/4504186316521472",
     integrations=[
         DjangoIntegration(),
     ],
@@ -19,7 +19,6 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
