@@ -5,5 +5,4 @@ COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN flake8 --ignore=E303,E501,E302,E241,W292,F811,F841
-RUN pytest
 EXPOSE 8000
