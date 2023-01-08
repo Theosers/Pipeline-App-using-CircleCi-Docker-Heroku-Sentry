@@ -52,9 +52,8 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: |
-            export PYTHONUNBUFFERED=1
-            docker-compose up
+          no_output_timeout: 30m
+          command: docker-compose up
           
       - run:
           name: tag the image
