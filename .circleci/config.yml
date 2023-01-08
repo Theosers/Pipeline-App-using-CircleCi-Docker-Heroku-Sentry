@@ -52,7 +52,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build images of services declared in docker-compose.yml
-          no_output_timeout: 30m
+          no_output_timeout: 12h
           command: docker-compose up
           
       - run:
