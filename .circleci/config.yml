@@ -52,7 +52,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: docker-compose build
+          command: docker-compose run
           
       - run:
           name: tag the image
