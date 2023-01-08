@@ -52,7 +52,9 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: docker-compose up
+          command: |
+            export PYTHONUNBUFFERED=1
+            docker-compose up
           
       - run:
           name: tag the image
