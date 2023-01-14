@@ -53,7 +53,7 @@ jobs:
       
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: docker-compose up -d
+          command: docker-compose up -d 
           
       - run:
           name: tag the image
