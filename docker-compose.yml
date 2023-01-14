@@ -1,14 +1,6 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=theophile
-      - POSTGRES_PASSWORD=123456
 
   web:
     build: .
@@ -21,8 +13,3 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-
-    depends_on:
-      - db
-volumes:
-  postgres_data:
