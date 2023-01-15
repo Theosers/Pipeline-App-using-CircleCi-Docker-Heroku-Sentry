@@ -8,6 +8,7 @@ def lettings_index(request):
     return render(request, 'lettings/index.html', context)
 
 
+
 def letting(request, letting_id):
     letting = Letting.objects.get(id=letting_id)
     context = {
