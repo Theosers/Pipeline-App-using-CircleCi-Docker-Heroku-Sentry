@@ -1,28 +1,14 @@
-version: "3.9"
+version: "3.11"
 
 services:
-  db:
-    image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=theophile
-      - POSTGRES_PASSWORD=123456
 
   web:
     build: .
     command: >
-       sh -c 'python pytest
-              python manage.py migrate &&
+       sh -c 'python manage.py migrate &&
               python manage.py loaddata datadump.json &&
               python manage.py runserver 0.0.0.0:8000'
     volumes:
       - .:/code
     ports:
       - "8000:8000"
-
-    depends_on:
-      - db
-volumes:
-  postgres_data:

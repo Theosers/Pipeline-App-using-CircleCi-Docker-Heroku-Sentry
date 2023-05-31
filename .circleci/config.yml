@@ -38,9 +38,10 @@ jobs:
           command: pytest
   dock:
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.11
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Install Docker Compose
           environment:
@@ -49,10 +50,10 @@ jobs:
             curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - setup_remote_docker
+      
       - run:
           name: Build images of services declared in docker-compose.yml
-          command: docker-compose up
+          command: docker-compose up -d 
           
       - run:
           name: tag the image
